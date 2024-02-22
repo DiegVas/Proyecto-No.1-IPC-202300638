@@ -1,16 +1,19 @@
-package methods;
+package classes;
 
-import javax.swing.JFrame;
+import javax.swing.*;
+
 import java.awt.*;
 
 public class FrameWindow extends JFrame {
     public FrameWindow() {
         this.setTitle("Hospital Genesis");
-        this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setSize(1000, 600);
+        this.setBackground(new Color(0xdde7e6));
         this.setLayout(null);
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("assets/icon.png")));
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Images/logo.png")));
         this.setVisible(true);
+
     }
 }
