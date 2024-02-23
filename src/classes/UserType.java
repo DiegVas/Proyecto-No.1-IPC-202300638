@@ -6,7 +6,7 @@ public class UserType {
         String code = "202300638", name = "admin", password = "proyectoIPC1";
     }
 
-    public class doctor {
+    public static class doctor {
         String name, lastName, specialty, password, phone;
         int age;
         boolean gender;
@@ -22,12 +22,12 @@ public class UserType {
         }
     }
 
-    public class student {
+    public class patient {
         String name, lastName, password;
         int age;
         boolean gender;
 
-        student(String name, String lastName, String password, int age, boolean gender) {
+        patient(String name, String lastName, String password, int age, boolean gender) {
             this.name = name;
             this.lastName = lastName;
             this.password = password;

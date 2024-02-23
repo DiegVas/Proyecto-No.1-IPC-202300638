@@ -1,5 +1,7 @@
 package Ui;
 
+import classes.BaseData;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -68,6 +70,8 @@ public class LoginUI {
             public void actionPerformed(ActionEvent e) {
                 System.out.println(userData.getText());
                 System.out.println(password.getText());
+                BaseData data = new BaseData();
+                data.addPatient();
             }
         });
         panellogin.add(login);
