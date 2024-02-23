@@ -2,9 +2,12 @@ package Ui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.lang.reflect.Field;
+
+import static java.lang.ClassLoader.*;
 
 public class LoginUI {
 
@@ -25,7 +28,7 @@ public class LoginUI {
         Text.setHorizontalAlignment(JLabel.CENTER);
         Text.setFont(new Font("Roboto", Font.BOLD, 30));
         Text.setForeground(Color.white);
-        Text.setIcon(new ImageIcon(ClassLoader.getSystemResource("Images/logo.png")));
+        Text.setIcon(new ImageIcon(getSystemResource("Images/logo.png")));
         panelText.add(Text);
 
         panellogin.setBounds(350, 0, 630, 600);
@@ -60,7 +63,13 @@ public class LoginUI {
         login.setForeground(Color.white);
         login.setBorder(BorderFactory.createEtchedBorder());
         login.setFocusable(false);
-        UIManager.put("Button.focus", Color.yellow);
+        login.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(userData.getText());
+                System.out.println(password.getText());
+            }
+        });
         panellogin.add(login);
 
         JPanel newUser = new JPanel();
@@ -101,7 +110,6 @@ public class LoginUI {
         public JPanel createTextfield(String textTitle, JTextField textField) {
             JPanel PanelField = new JPanel();
             JLabel title = new JLabel();
-            textField = new JTextField();
 
             title.setText(textTitle);
             title.setFont(new Font("Roboto", Font.PLAIN, 20));
