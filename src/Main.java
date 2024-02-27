@@ -1,10 +1,12 @@
 import Ui.LoginUI;
 import classes.FrameWindow;
+import classes.UserType;
 
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
+
+        UserType addAdmin = new UserType();
+        addAdmin.codeGenerates.add("202300638");
         FrameWindow window = new FrameWindow();
         window.add(new LoginUI().loginWindow());
 

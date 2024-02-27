@@ -1,17 +1,34 @@
 package classes;
 
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+
 public class UserType {
 
+    public static List<String> codeGenerates = new ArrayList<String>();
+
     public class admin {
-        String code = "202300638", name = "admin", password = "proyectoIPC1";
+        public static String code = "202300638";
+        public String name = "admin";
+        public static String password = "proyectoIPC1";
+
     }
 
     public static class doctor {
-        String name, lastName, specialty, password, phone;
-        int age;
-        boolean gender;
+        public String name;
+        public String lastName;
+        public String specialty;
+        public String password;
+        public String phone;
+        public String code;
+        public int age;
+        public boolean gender;
 
         doctor(String name, String lastName, String specialty, String password, String phone, int age, boolean gender) {
+            this.code = generateCode();
             this.name = name;
             this.lastName = lastName;
             this.specialty = specialty;
@@ -22,12 +39,13 @@ public class UserType {
         }
     }
 
-    public class patient {
-        String name, lastName, password;
-        int age;
-        boolean gender;
+    public static class patient {
+        public String name, lastName, password, code;
+        public int age;
+        public boolean gender;
 
-        patient(String name, String lastName, String password, int age, boolean gender) {
+        public patient(String name, String lastName, String password, int age, boolean gender) {
+            this.code = generateCode();
             this.name = name;
             this.lastName = lastName;
             this.password = password;
@@ -36,5 +54,26 @@ public class UserType {
         }
     }
 
+    public static String generateCode() {
+        Random random = new Random();
+
+        while (true) {
+            int longitud = random.nextInt(9 - 5 + 1) + 5;
+            StringBuilder codigo = new StringBuilder();
+
+            for (int i = 0; i < longitud; i++) {
+                char caracter = (char) (random.nextInt(10) + '0');
+                codigo.append(caracter);
+            }
+
+            String codigoStr = codigo.toString();
+            if (!codeGenerates.contains(codigoStr)) {
+                codeGenerates.add(codigoStr);
+                return codigoStr;
+            }
+        }
+
+
+    }
 
 }

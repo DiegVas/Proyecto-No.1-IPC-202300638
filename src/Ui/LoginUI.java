@@ -1,6 +1,9 @@
 package Ui;
 
 import classes.BaseData;
+import classes.UiConts;
+import classes.TextfiledContructor;
+import classes.UserType;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +21,9 @@ public class LoginUI {
         JPanel panelText = new JPanel();
         JPanel panel = new JPanel();
 
-        panelText.setBackground(new Color(0x1c3142));
+        UiConts conts = new UiConts();
+
+        panelText.setBackground(conts.background);
         panelText.setBounds(0, 0, 350, 600);
         panelText.setLayout(new BorderLayout());
 
@@ -28,7 +33,7 @@ public class LoginUI {
         Text.setHorizontalTextPosition(JLabel.CENTER);
         Text.setVerticalAlignment(JLabel.CENTER);
         Text.setHorizontalAlignment(JLabel.CENTER);
-        Text.setFont(new Font("Roboto", Font.BOLD, 30));
+        Text.setFont(conts.boldText(30));
         Text.setForeground(Color.white);
         Text.setIcon(new ImageIcon(getSystemResource("Images/logo.png")));
         panelText.add(Text);
@@ -44,10 +49,10 @@ public class LoginUI {
         JLabel Title = new JLabel();
         Title.setText("Iniciar Sesion");
         Title.setHorizontalAlignment(JLabel.CENTER);
-        Title.setFont(new Font("Roboto", Font.BOLD, 25));
+        Title.setFont(conts.boldText(25));
         TitlePanel.add(Title, BorderLayout.SOUTH);
 
-        labeTextfield FieldCreator = new labeTextfield(300, 30);
+        TextfiledContructor FieldCreator = new TextfiledContructor(450, 40);
 
         JTextField userData = new JTextField();
         JPanel userPanel = FieldCreator.createTextfield("Usuario", userData);
@@ -61,18 +66,39 @@ public class LoginUI {
         JButton login = new JButton();
         login.setPreferredSize(new Dimension(250, 50));
         login.setText("Iniciar secion");
-        login.setBackground(new Color(0x40617c));
+        login.setBackground(conts.TextColor);
         login.setForeground(Color.white);
         login.setBorder(BorderFactory.createEtchedBorder());
         login.setFocusable(false);
-        login.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println(userData.getText());
-                System.out.println(password.getText());
-                BaseData data = new BaseData();
-                data.addPatient();
+        login.addActionListener(e -> {
+            BaseData a = new BaseData();
+            a.addPatient("1", "", "", 0, false);
+            if (userData.getText().equals(UserType.admin.code) && password.getText().equals(UserType.admin.password)) {
+                System.out.println("BUen");
+            } else {
+                if (BaseData.patientList.stream().filter(code -> code.equals(userData.getText())).findFirst().isPresent()) {
+
+                    UserType.patient patient = BaseData.patientList.stream().filter(code -> code.equals(userData.getText())).findFirst().get();
+
+                    if (patient.password.equals(password.getText())) {
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Iniciar sesion", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } else if (BaseData.doctorList.stream().filter(code -> code.equals(userData.getText())).findFirst().isPresent()) {
+
+                    UserType.doctor doctor = BaseData.doctorList.stream().filter(code -> code.equals(userData.getText())).findFirst().get();
+
+                    if (doctor.password.equals(password.getText())) {
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Iniciar sesion", JOptionPane.ERROR_MESSAGE);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "NO se encontro ningun usuario", "Iniciar sesion", JOptionPane.ERROR_MESSAGE);
+                }
             }
+            BaseData data = new BaseData();
         });
         panellogin.add(login);
 
@@ -80,15 +106,15 @@ public class LoginUI {
         JLabel createUser = new JLabel();
         JLabel infUser = new JLabel();
         infUser.setText("¿No tiene usuario?");
-        infUser.setFont(new Font("Roboto", Font.PLAIN, 15));
+        infUser.setFont(conts.plainText(15));
         createUser.setText(" Crea uno ahora");
-        createUser.setForeground(new Color(0x5c8cae));
-        createUser.setFont(new Font("Roboto", Font.BOLD, 15));
+        createUser.setForeground(conts.secundaryColor);
+        createUser.setFont(conts.boldText(15));
         createUser.setCursor(new Cursor(Cursor.HAND_CURSOR));
         createUser.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println("Click");
+                addUser addWindow = new addUser();
             }
         });
         newUser.add(infUser);
@@ -106,28 +132,4 @@ public class LoginUI {
         return panel;
     }
 
-    private static class labeTextfield {
-
-        labeTextfield(double width, double height) {
-        }
-
-        public JPanel createTextfield(String textTitle, JTextField textField) {
-            JPanel PanelField = new JPanel();
-            JLabel title = new JLabel();
-
-            title.setText(textTitle);
-            title.setFont(new Font("Roboto", Font.PLAIN, 20));
-
-            textField.setPreferredSize(new Dimension(450, 40));
-            textField.setForeground(new Color(0x1c3142));
-            textField.setBackground(Color.WHITE);
-
-            PanelField.setLayout(new BorderLayout(0, 10));
-            PanelField.add(title, BorderLayout.NORTH);
-            PanelField.add(textField, BorderLayout.CENTER);
-            return PanelField;
-
-        }
-
-    }
 }
