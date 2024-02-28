@@ -58,7 +58,7 @@ public class UserType {
         Random random = new Random();
 
         while (true) {
-            int longitud = random.nextInt(9 - 5 + 1) + 5;
+            int longitud = random.nextInt(7 - 5 + 1) + 7;
             StringBuilder codigo = new StringBuilder();
 
             for (int i = 0; i < longitud; i++) {

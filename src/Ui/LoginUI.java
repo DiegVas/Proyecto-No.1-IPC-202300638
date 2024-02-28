@@ -1,5 +1,6 @@
 package Ui;
 
+import Ui.AdminUI.AdminTabbedPane;
 import classes.BaseData;
 import classes.UiConts;
 import classes.TextfiledContructor;
@@ -72,24 +73,24 @@ public class LoginUI {
         login.setFocusable(false);
         login.addActionListener(e -> {
             BaseData a = new BaseData();
-            a.addPatient("1", "", "", 0, false);
+            for (int i = 0; i < a.patientList.size(); i++) {
+                System.out.println(a.patientList.get(i).code);
+            }
+
             if (userData.getText().equals(UserType.admin.code) && password.getText().equals(UserType.admin.password)) {
-                System.out.println("BUen");
+                AdminTabbedPane adminPanel = new AdminTabbedPane();
             } else {
-                if (BaseData.patientList.stream().filter(code -> code.equals(userData.getText())).findFirst().isPresent()) {
 
-                    UserType.patient patient = BaseData.patientList.stream().filter(code -> code.equals(userData.getText())).findFirst().get();
+                if (BaseData.patientList.stream().filter(code -> code.code.equals(userData.getText())).findFirst().isPresent()) {
 
-                    if (patient.password.equals(password.getText())) {
+                    if (BaseData.patientList.stream().filter(passwordF -> passwordF.password.equals(password.getText())).findFirst().isPresent()) {
                     } else {
                         JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Iniciar sesion", JOptionPane.ERROR_MESSAGE);
                     }
 
-                } else if (BaseData.doctorList.stream().filter(code -> code.equals(userData.getText())).findFirst().isPresent()) {
+                } else if (BaseData.doctorList.stream().filter(code -> code.code.equals(userData.getText())).findFirst().isPresent()) {
 
-                    UserType.doctor doctor = BaseData.doctorList.stream().filter(code -> code.equals(userData.getText())).findFirst().get();
-
-                    if (doctor.password.equals(password.getText())) {
+                    if (BaseData.doctorList.stream().filter(passwordF -> passwordF.password.equals(password.getText())).findFirst().isPresent()) {
                     } else {
                         JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Iniciar sesion", JOptionPane.ERROR_MESSAGE);
                     }
@@ -98,7 +99,6 @@ public class LoginUI {
                     JOptionPane.showMessageDialog(null, "NO se encontro ningun usuario", "Iniciar sesion", JOptionPane.ERROR_MESSAGE);
                 }
             }
-            BaseData data = new BaseData();
         });
         panellogin.add(login);
 

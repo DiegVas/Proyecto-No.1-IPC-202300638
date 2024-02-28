@@ -1,9 +1,6 @@
 package Ui;
 
-import classes.BaseData;
-import classes.TextfiledContructor;
-import classes.UiConts;
-import classes.UserType;
+import classes.*;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -12,23 +9,11 @@ import java.awt.*;
 public class addUser {
 
     addUser() {
-        JFrame window = window();
+        FrameWindow window = new FrameWindow("Crear Usuario", 600, 600);
+        window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         window.add(form(window));
     }
-
-    public JFrame window() {
-        JFrame frame = new JFrame();
-        frame.setTitle("Crear Usuario");
-        frame.setDefaultCloseOperation(frame.DISPOSE_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setSize(600, 600);
-        frame.setBackground(new UiConts().tercyColor);
-        frame.setLayout(null);
-        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Images/logo.png")));
-        frame.setVisible(true);
-        return frame;
-    }
-
+    
     public JPanel form(JFrame actualFrame) {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -105,6 +90,7 @@ public class addUser {
                 BaseData newUser = new BaseData();
                 newUser.addPatient(name.getText(), lastName.getText(), password.getText(), Integer.parseInt(age.getText()), ButtonGrpup.getSelection() == male.getModel());
                 JOptionPane.showMessageDialog(null, "Usuario creado con exito", "Crear usuario", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Su codigo de usuario es \n" + newUser.patientList.getLast().code, "Crear usuario", JOptionPane.INFORMATION_MESSAGE);
                 actualFrame.dispose();
                 System.out.println(newUser.patientList.get(0).code);
             }
