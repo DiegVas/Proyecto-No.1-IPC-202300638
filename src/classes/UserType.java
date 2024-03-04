@@ -10,14 +10,14 @@ public class UserType {
 
     public static List<String> codeGenerates = new ArrayList<String>();
 
-    public class admin {
+    public class Admin {
         public static String code = "202300638";
         public String name = "admin";
         public static String password = "proyectoIPC1";
 
     }
 
-    public static class doctor {
+    public static class Doctor {
         public String name;
         public String lastName;
         public String specialty;
@@ -27,7 +27,7 @@ public class UserType {
         public int age;
         public boolean gender;
 
-        doctor(String name, String lastName, String specialty, String password, String phone, int age, boolean gender) {
+        Doctor(String name, String lastName, String specialty, String password, String phone, int age, boolean gender) {
             this.code = generateCode();
             this.name = name;
             this.lastName = lastName;
@@ -37,6 +37,15 @@ public class UserType {
             this.age = age;
             this.gender = gender;
         }
+
+        public String getCode() {
+            return this.code;
+        }
+
+        public String getSpecialty() {
+            return this.specialty;
+        }
+
     }
 
     public static class patient {

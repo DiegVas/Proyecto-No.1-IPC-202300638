@@ -3,8 +3,10 @@ import Ui.LoginUI;
 import classes.FrameWindow;
 import classes.UserType;
 
+import javax.print.Doc;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -27,11 +29,8 @@ public class Main {
         window.setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Images/logo.png")));
         UserType.codeGenerates.add("202300638");
 
-        window.add(new AdminTabbedPane().AdminPanel()
-                // new LoginUI().loginWindow()
-
-
-        );
+        window.add(new AdminTabbedPane().AdminPanel());
+        // new LoginUI().loginWindow()
 
 
     }
