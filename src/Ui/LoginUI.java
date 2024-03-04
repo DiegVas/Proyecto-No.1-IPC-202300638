@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Optional;
 
 import static java.lang.ClassLoader.*;
 
@@ -70,29 +71,30 @@ public class LoginUI {
         login.setBorder(BorderFactory.createEtchedBorder());
         login.setFocusable(false);
         login.addActionListener(e -> {
-            BaseData a = new BaseData();
-            for (int i = 0; i < a.getPatientList().size(); i++) {
-                System.out.println(a.getPatientList().get(i).code);
+
+            BaseData BaseCodes = new BaseData();
+            for (UserType.patient patient : BaseCodes.getPatientList()) {
+                System.out.println(patient.code);
+                System.out.println(patient.password);
             }
 
-            if (userData.getText().equals(UserType.Admin.code) && password.getText().equals(UserType.Admin.password)) {
+            String code = userData.getText();
+            String passwordField = password.getText();
+
+            if (code.equals(UserType.Admin.code) && passwordField.equals(UserType.Admin.password)) {
+                System.out.println("Admin");
                 AdminTabbedPane adminPanel = new AdminTabbedPane();
             } else {
 
-                if (BaseData.patientList.stream().anyMatch(code -> code.code.equals(userData.getText()))) {
+                Optional<UserType.patient> patientFind = BaseCodes.getPatientList().stream().filter(cod -> cod.code.equals(code)).findFirst();
+                System.out.println(patientFind);
+                Optional<UserType.Doctor> DoctortFind = BaseCodes.getDoctorList().stream().filter(cod -> cod.code.equals(code)).findFirst();
+                System.out.println(DoctortFind);
 
-                    if (BaseData.patientList.stream().anyMatch(passwordF -> passwordF.password.equals(password.getText()))) {
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Iniciar sesion", JOptionPane.ERROR_MESSAGE);
-                    }
-
-                } else if (BaseData.doctorList.stream().anyMatch(code -> code.code.equals(userData.getText()))) {
-
-                    if (BaseData.doctorList.stream().anyMatch(passwordF -> passwordF.password.equals(password.getText()))) {
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Iniciar sesion", JOptionPane.ERROR_MESSAGE);
-                    }
-
+                if (patientFind.isPresent() && patientFind.get().password.equals(passwordField)) {
+                    System.out.println("Paciente");
+                } else if (DoctortFind.isPresent() && DoctortFind.get().password.equals(passwordField)) {
+                    System.out.println("Doctor");
                 } else {
                     JOptionPane.showMessageDialog(null, "NO se encontro ningun usuario", "Iniciar sesion", JOptionPane.ERROR_MESSAGE);
                 }
@@ -112,12 +114,12 @@ public class LoginUI {
         createUser.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                addUser addWindow = new addUser();
+                AddUser addWindow = new AddUser();
             }
         });
+
         newUser.add(infUser);
         newUser.add(createUser);
-
         newUser.setLayout(new FlowLayout());
         newUser.setPreferredSize(new Dimension(500, 50));
         panellogin.add(newUser);

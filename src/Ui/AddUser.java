@@ -3,17 +3,16 @@ package Ui;
 import classes.*;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
-public class addUser {
+public class AddUser {
 
-    addUser() {
+    AddUser() {
         FrameWindow window = new FrameWindow("Crear Usuario", 600, 600);
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         window.add(form(window));
     }
-    
+
     public JPanel form(JFrame actualFrame) {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -68,9 +67,9 @@ public class addUser {
         genderGroup.add(famale);
         genderPanel.add(genderGroup, BorderLayout.WEST);
 
-        ButtonGroup ButtonGrpup = new ButtonGroup();
-        ButtonGrpup.add(male);
-        ButtonGrpup.add(famale);
+        ButtonGroup ButtonGroup = new ButtonGroup();
+        ButtonGroup.add(male);
+        ButtonGroup.add(famale);
         form.add(genderPanel);
 
         JButton addUser = new JButton();
@@ -82,21 +81,24 @@ public class addUser {
         addUser.setFocusable(false);
 
         addUser.addActionListener(e -> {
-            if (name.getText().isEmpty() || lastName.getText().isEmpty() || password.getText().isEmpty() || age.getText().isEmpty() || ButtonGrpup.getSelection() == null) {
-                JOptionPane.showMessageDialog(null, "Complete todas las casillas", "Crear usuario", JOptionPane.ERROR_MESSAGE);
-            } else if (!age.getText().matches("[0-9]+")) {
-                JOptionPane.showMessageDialog(null, "Por favor ingrese datos validos", "Crear usuario", JOptionPane.ERROR_MESSAGE);
+            if (name.getText().isEmpty()
+                    || lastName.getText().isEmpty()
+                    || password.getText().isEmpty()
+                    || age.getText().isEmpty()
+                    || ButtonGroup.getSelection() == null
+                    || !age.getText().matches("\\d+")) {
+
+                JOptionPane.showMessageDialog(null, "Complete todas las casillas y por favor ingrese datos validos", "Crear usuario", JOptionPane.ERROR_MESSAGE);
+
             } else {
                 BaseData newUser = new BaseData();
-                newUser.addPatient(name.getText(), lastName.getText(), password.getText(), Integer.parseInt(age.getText()), ButtonGrpup.getSelection() == male.getModel());
-                JOptionPane.showMessageDialog(null, "Usuario creado con exito", "Crear usuario", JOptionPane.INFORMATION_MESSAGE);
-                JOptionPane.showMessageDialog(null, "Su codigo de usuario es \n" + newUser.patientList.getLast().code, "Crear usuario", JOptionPane.INFORMATION_MESSAGE);
+                newUser.addPatient(name.getText(), lastName.getText(), password.getText(), Integer.parseInt(age.getText()), ButtonGroup.getSelection() == male.getModel());
+                JOptionPane.showMessageDialog(null, "Usuario creado con exito\nSu codigo de usuario es " + newUser.patientList.getLast().code, "Crear usuario", JOptionPane.INFORMATION_MESSAGE);
                 actualFrame.dispose();
-                System.out.println(newUser.patientList.get(0).code);
             }
         });
-        form.add(addUser);
 
+        form.add(addUser);
         panel.add(title, BorderLayout.NORTH);
         panel.add(form, BorderLayout.CENTER);
 

@@ -8,7 +8,7 @@ public class BaseData {
     public static List<UserType.patient> patientList = new ArrayList<UserType.patient>();
 
     public void addPatient(String name, String lastName, String password, int age, boolean gender) {
-        patientList.add(new UserType.patient("", "", "", 0, false));
+        patientList.add(new UserType.patient(name, lastName, password, age, gender));
     }
 
     public List<UserType.Doctor> getDoctorList() {
