@@ -16,8 +16,8 @@ public class Main {
         window.setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Images/logo.png")));
         UserType.codeGenerates.add("202300638");
 
-        //window.add(new AdminTabbedPane().AdminPanel());
-        window.add(new LoginUI().loginWindow());
+        window.add(new AdminTabbedPane().AdminPanel());
+        //window.add(new LoginUI().loginWindow());
 
     }
 }

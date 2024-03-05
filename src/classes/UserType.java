@@ -27,13 +27,13 @@ public class UserType {
         public int age;
         public boolean gender;
 
-        Doctor(String name, String lastName, String specialty, String password, String phone, int age, boolean gender) {
+        public Doctor(String name, String lastName, String specialty, String password, String phone, int age, boolean gender) {
             this.code = generateCode();
             this.name = name;
             this.lastName = lastName;
             this.specialty = specialty;
-            this.password = password;
             this.phone = phone;
+            this.password = password;
             this.age = age;
             this.gender = gender;
         }

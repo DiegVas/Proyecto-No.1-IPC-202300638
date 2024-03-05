@@ -11,6 +11,10 @@ public class BaseData {
         patientList.add(new UserType.patient(name, lastName, password, age, gender));
     }
 
+    public void addDoctor(String name, String lastName, String especiality, String phone, String password, int age, boolean gender) {
+        doctorList.add(new UserType.Doctor(name, lastName, especiality, phone, password, age, gender));
+    }
+
     public List<UserType.Doctor> getDoctorList() {
         return doctorList;
     }

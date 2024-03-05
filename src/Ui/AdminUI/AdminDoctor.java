@@ -1,16 +1,24 @@
 package Ui.AdminUI;
 
+import classes.BaseData;
 import classes.UiConts;
+import classes.UserType;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
 
 public class AdminDoctor {
 
+    public static DefaultTableModel model = new DefaultTableModel();
+
     public JPanel Panel() {
 
-        Object[][] data = {{"001", "Diego Vásquez", "M", "35668264", "17", "Doctor"}};
-        String[] headers = {"Codigo", "Nombre Completo", "Genero", "Edad", "Especialidad", "Telefono"};
+        String[] headers = {"Codigo", "Nombre", "Apellido", "Edad", "Especialidad", "Telefono", "Genero"};
+        model.setColumnIdentifiers(headers);
 
         UiConts conts = new UiConts();
         JPanel aDoctorPanel = new JPanel();
@@ -18,7 +26,7 @@ public class AdminDoctor {
         aDoctorPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         JLabel titleDoctor = new JLabel();
-        JTable DoctorList = new JTable(data, headers);
+        JTable DoctorList = new JTable(model);
         JScrollPane scrollPane = new JScrollPane(DoctorList);
 
         JPanel ButtonsPanel = new JPanel();
@@ -32,6 +40,9 @@ public class AdminDoctor {
         AddDoctor.setForeground(Color.white);
         AddDoctor.setBorder(BorderFactory.createEtchedBorder());
         AddDoctor.setFocusable(false);
+        AddDoctor.addActionListener(e -> {
+            Ui.AdminUI.AddDoctor doctor = new AddDoctor();
+        });
 
         JButton ModyDoctor = new JButton();
         ModyDoctor.setPreferredSize(new Dimension(130, 50));
@@ -40,6 +51,8 @@ public class AdminDoctor {
         ModyDoctor.setForeground(Color.white);
         ModyDoctor.setBorder(BorderFactory.createEtchedBorder());
         ModyDoctor.setFocusable(false);
+        ModyDoctor.addActionListener(e -> {
+        });
 
         JButton DeleteDoctor = new JButton();
         DeleteDoctor.setPreferredSize(new Dimension(250, 50));
