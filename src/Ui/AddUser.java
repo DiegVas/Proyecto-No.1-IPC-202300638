@@ -40,7 +40,7 @@ public class AddUser {
         JPanel lastNamePanel = contructor.createTextfield("\n", lastName);
         form.add(lastNamePanel);
 
-        JTextField password = new JTextField();
+        JPasswordField password = new JPasswordField();
         JPanel passwordPanel = contructor.createTextfield("Contraseña", password);
         passwordPanel.setPreferredSize(new Dimension(410, 80));
         form.add(passwordPanel);
@@ -82,7 +82,7 @@ public class AddUser {
         addUser.addActionListener(e -> {
             if (name.getText().isEmpty()
                     || lastName.getText().isEmpty()
-                    || password.getText().isEmpty()
+                    || String.valueOf(password.getPassword()).isEmpty()
                     || age.getText().isEmpty()
                     || genders[gender.getSelectedIndex()] == null
                     || !age.getText().matches("\\d+")) {
@@ -91,8 +91,8 @@ public class AddUser {
 
             } else {
                 BaseData newUser = new BaseData();
-                newUser.addPatient(name.getText(), lastName.getText(), password.getText(), Integer.parseInt(age.getText()), Objects.equals(genders[gender.getSelectedIndex()], "Hombre"));
-                JOptionPane.showMessageDialog(null, "Usuario creado con exito\nSu codigo de usuario es " + newUser.patientList.getLast().code, "Crear usuario", JOptionPane.INFORMATION_MESSAGE);
+                newUser.addPatient(name.getText(), lastName.getText(), String.valueOf(password.getPassword()), Integer.parseInt(age.getText()), Objects.equals(genders[gender.getSelectedIndex()], "Hombre"));
+                JOptionPane.showMessageDialog(null, "Usuario creado con exito\nSu codigo de usuario es " + BaseData.patientList.getLast().code, "Crear usuario", JOptionPane.INFORMATION_MESSAGE);
                 actualFrame.dispose();
             }
         });

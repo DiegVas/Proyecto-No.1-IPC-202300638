@@ -15,6 +15,10 @@ public class BaseData {
         doctorList.add(new UserType.Doctor(name, lastName, especiality, phone, password, age, gender));
     }
 
+    public void ChangeDoctor(int index, UserType.Doctor newData) {
+        doctorList.set(index, newData);
+    }
+
     public List<UserType.Doctor> getDoctorList() {
         return doctorList;
     }

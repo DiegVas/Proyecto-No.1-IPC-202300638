@@ -1,15 +1,11 @@
-package Ui.AdminUI;
+package Ui.AdminUI.Doctor;
 
 import classes.BaseData;
 import classes.UiConts;
-import classes.UserType;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Map;
 
 public class AdminDoctor {
 
@@ -27,6 +23,9 @@ public class AdminDoctor {
 
         JLabel titleDoctor = new JLabel();
         JTable DoctorList = new JTable(model);
+        DoctorList.setForeground(conts.TextColor);
+        DoctorList.getTableHeader().setBackground(conts.background);
+        DoctorList.getTableHeader().setForeground(Color.white);
         JScrollPane scrollPane = new JScrollPane(DoctorList);
 
         JPanel ButtonsPanel = new JPanel();
@@ -41,7 +40,7 @@ public class AdminDoctor {
         AddDoctor.setBorder(BorderFactory.createEtchedBorder());
         AddDoctor.setFocusable(false);
         AddDoctor.addActionListener(e -> {
-            Ui.AdminUI.AddDoctor doctor = new AddDoctor();
+            Ui.AdminUI.Doctor.AddDoctor doctor = new AddDoctor();
         });
 
         JButton ModyDoctor = new JButton();
@@ -52,6 +51,13 @@ public class AdminDoctor {
         ModyDoctor.setBorder(BorderFactory.createEtchedBorder());
         ModyDoctor.setFocusable(false);
         ModyDoctor.addActionListener(e -> {
+            int index = DoctorList.getSelectedRow();
+            if (index == -1) {
+                JOptionPane.showMessageDialog(null, "Seleccione un doctor", "Eliminar doctor", JOptionPane.QUESTION_MESSAGE);
+                return;
+            }
+            Ui.AdminUI.Doctor.ModyDoctor modyDoctor = new ModyDoctor(BaseData.doctorList.get(index), index);
+
         });
 
         JButton DeleteDoctor = new JButton();
@@ -61,6 +67,19 @@ public class AdminDoctor {
         DeleteDoctor.setForeground(Color.white);
         DeleteDoctor.setBorder(BorderFactory.createEtchedBorder());
         DeleteDoctor.setFocusable(false);
+        DeleteDoctor.addActionListener(e -> {
+            int index = DoctorList.getSelectedRow();
+            if (index == -1) {
+                JOptionPane.showMessageDialog(null, "Seleccione un doctor", "Eliminar doctor", JOptionPane.QUESTION_MESSAGE);
+                return;
+            }
+
+            int response = JOptionPane.showConfirmDialog(null, "Esta seguro de elminar al doctor " + BaseData.doctorList.get(index).name, "Eliminar Doctor", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if (response == JOptionPane.NO_OPTION) return;
+
+            BaseData.doctorList.remove(index);
+            model.removeRow(index);
+        });
 
 
         ButtonsPanel.add(AddDoctor);

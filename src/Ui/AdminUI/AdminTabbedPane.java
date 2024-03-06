@@ -1,11 +1,9 @@
 package Ui.AdminUI;
 
-import classes.FrameWindow;
+import Ui.AdminUI.Doctor.AdminDoctor;
 import classes.UiConts;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
-import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
 
 public class AdminTabbedPane {
@@ -32,7 +30,6 @@ public class AdminTabbedPane {
         AdminPane.add(AdminTitle, BorderLayout.NORTH);
 
         JTabbedPane managePanel = new JTabbedPane();
-
         managePanel.setBackground(Color.white);
 
         JPanel doctor = new AdminDoctor().Panel();
@@ -43,7 +40,6 @@ public class AdminTabbedPane {
 
         JLabel TabSize = new JLabel();
         TabSize.setPreferredSize(new Dimension(200, 30));
-
 
         managePanel.addChangeListener(e -> {
 
