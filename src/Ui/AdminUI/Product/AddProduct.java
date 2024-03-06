@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class AddProduct {
     public AddProduct() {
-        FrameWindow window = new FrameWindow("Agregar doctor", 550, 700);
+        FrameWindow window = new FrameWindow("Agregar producto", 550, 700);
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         window.add(AddPatientP(window));
     }
@@ -19,12 +19,12 @@ public class AddProduct {
     public JPanel AddPatientP(JFrame Actualframe) {
         UiConts conts = new UiConts();
 
-        JPanel AddPatientPanel = new JPanel();
-        AddPatientPanel.setLayout(new BorderLayout());
-        AddPatientPanel.setBounds(0, 0, 500, 700);
+        JPanel addProductPanel = new JPanel();
+        addProductPanel.setLayout(new BorderLayout());
+        addProductPanel.setBounds(0, 0, 500, 700);
 
         JLabel title = new JLabel();
-        title.setText("Añadir Paciente");
+        title.setText("Añadir producto");
         title.setFont(conts.boldText(30));
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setForeground(conts.TextColor);
@@ -35,76 +35,47 @@ public class AddProduct {
 
         TextfiledContructor contructor = new TextfiledContructor(200, 40);
 
-        JTextField name = new JTextField();
-        JPanel namePanel = contructor.createTextfield("Nombre Completo", name);
+        JTextField product = new JTextField();
+        JPanel namePanel = contructor.createTextfield("Producto", product);
         form.add(namePanel);
 
-        JTextField lastName = new JTextField();
-        JPanel lastNamePanel = contructor.createTextfield("\n", lastName);
-        form.add(lastNamePanel);
+        JTextField description = new JTextField();
+        JPanel descriptionPanel = contructor.createTextfield("Descripcion", description);
+        form.add(descriptionPanel);
 
-        JTextField password = new JTextField();
-        JPanel passwordPanel = contructor.createTextfield("Contraseña", password);
-        passwordPanel.setPreferredSize(new Dimension(410, 80));
-        form.add(passwordPanel);
+        JTextField price = new JTextField();
+        JPanel pricePanel = contructor.createTextfield("Precio", price);
+        form.add(pricePanel);
 
-        JTextField age = new JTextField();
-        JPanel agePanel = contructor.createTextfield("Edad", age);
-        form.add(agePanel);
+        JTextField count = new JTextField();
+        JPanel countPanel = contructor.createTextfield("Cantidad", count);
+        form.add(countPanel);
 
-        JPanel genderPanel = new JPanel();
-        genderPanel.setPreferredSize(new Dimension(200, 70));
-        genderPanel.setLayout(new BorderLayout());
+        JButton aProduct = new JButton();
+        aProduct.setPreferredSize(new Dimension(250, 50));
+        aProduct.setText("Agregar producto");
+        aProduct.setBackground(conts.TextColor);
+        aProduct.setForeground(Color.white);
+        aProduct.setBorder(BorderFactory.createEtchedBorder());
+        aProduct.setFocusable(false);
 
-        JLabel genderTitle = new JLabel();
-        genderTitle.setText("Genero");
-        genderTitle.setFont(conts.plainText(20));
-        genderTitle.setPreferredSize(new Dimension(250, 30));
-        genderPanel.add(genderTitle, BorderLayout.NORTH);
-
-        String[] genders = {"Hombre", "Mujer"};
-        JComboBox gender = new JComboBox(genders);
-        gender.setSelectedItem(null);
-        gender.setSize(new Dimension(250, 30));
-        gender.setBackground(Color.white);
-        gender.setForeground(conts.TextColor);
-        gender.setFocusable(false);
-
-        genderPanel.add(gender);
-
-        form.add(genderPanel);
-
-        JButton addDoctor = new JButton();
-        addDoctor.setPreferredSize(new Dimension(250, 50));
-        addDoctor.setText("Crear Doctor");
-        addDoctor.setBackground(conts.TextColor);
-        addDoctor.setForeground(Color.white);
-        addDoctor.setBorder(BorderFactory.createEtchedBorder());
-        addDoctor.setFocusable(false);
-
-        addDoctor.addActionListener(e -> {
-            String nameI = name.getText(), lastNameI = lastName.getText(), passwordI = password.getText();
-            if (nameI.isEmpty()
-                    || lastNameI.isEmpty()
-                    || passwordI.isEmpty()
-                    || age.getText().isEmpty()
-                    || genders[gender.getSelectedIndex()] == null
-                    || !age.getText().matches("\\d+")) {
-                JOptionPane.showMessageDialog(null, "Complete todas las casillas y por favor ingrese datos validos", "Crear usuario", JOptionPane.ERROR_MESSAGE);
+        aProduct.addActionListener(e -> {
+            String productI = product.getText(), descriptionI = description.getText(), priceI = price.getText(), countI = count.getText();
+            if (productI.isEmpty() || descriptionI.isEmpty() || !priceI.matches("\\d+(\\.\\d+)?") || !countI.matches("\\d+")) {
+                JOptionPane.showMessageDialog(null, "Complete todas las casillas y por favor ingrese datos validos", "Agrear producto", JOptionPane.ERROR_MESSAGE);
             } else {
-                BaseData newPatient = new BaseData();
-                newPatient.addPatient(nameI, lastNameI, passwordI, Integer.parseInt(age.getText()), Objects.equals(genders[gender.getSelectedIndex()], "Hombre"));
-                JOptionPane.showMessageDialog(null, "Paciente creado con exito\nSu codigo de usuario es " + BaseData.patientList.getLast().code, "Crear Paciente", JOptionPane.INFORMATION_MESSAGE);
-                Object[] patientTab = {BaseData.patientList.getLast().code, nameI, lastNameI, age.getText(), genders[gender.getSelectedIndex()]};
-                AdminProduct.model.addRow(patientTab);
+                BaseData newProduct = new BaseData();
+                newProduct.addProduct(productI, descriptionI, Double.parseDouble(priceI), Integer.parseInt(countI));
+                JOptionPane.showMessageDialog(null, "Producto agregado con exito", "Agregar prodcuto", JOptionPane.INFORMATION_MESSAGE);
+                Object[] ProductoTab = {productI, descriptionI, priceI, countI};
+                AdminProduct.model.addRow(ProductoTab);
                 Actualframe.dispose();
             }
         });
 
-        form.add(addDoctor);
-        AddPatientPanel.add(title, BorderLayout.NORTH);
-        AddPatientPanel.add(form, BorderLayout.CENTER);
-
-        return AddPatientPanel;
+        form.add(aProduct);
+        addProductPanel.add(title, BorderLayout.NORTH);
+        addProductPanel.add(form, BorderLayout.CENTER);
+        return addProductPanel;
     }
 }

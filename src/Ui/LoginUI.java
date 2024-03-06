@@ -4,7 +4,7 @@ import Ui.AdminUI.AdminTabbedPane;
 import classes.BaseData;
 import classes.UiConts;
 import classes.TextfiledContructor;
-import classes.UserType;
+import classes.TypeClass;
 
 import javax.swing.*;
 import java.awt.*;
@@ -58,7 +58,7 @@ public class LoginUI {
         JPanel userPanel = FieldCreator.createTextfield("Usuario", userData);
         panellogin.add(userPanel);
 
-        JTextField password = new JTextField();
+        JPasswordField password = new JPasswordField();
 
         JPanel passwordPanel = FieldCreator.createTextfield("Contraseña", password);
         panellogin.add(passwordPanel);
@@ -73,22 +73,22 @@ public class LoginUI {
         login.addActionListener(e -> {
 
             BaseData BaseCodes = new BaseData();
-            for (UserType.patient patient : BaseCodes.getPatientList()) {
+            for (TypeClass.patient patient : BaseCodes.getPatientList()) {
                 System.out.println(patient.code);
                 System.out.println(patient.password);
             }
 
             String code = userData.getText();
-            String passwordField = password.getText();
+            String passwordField = String.valueOf(password.getPassword());
 
-            if (code.equals(UserType.Admin.code) && passwordField.equals(UserType.Admin.password)) {
+            if (code.equals(TypeClass.Admin.code) && passwordField.equals(TypeClass.Admin.password)) {
                 System.out.println("Admin");
-                AdminTabbedPane adminPanel = new AdminTabbedPane();
+                AdminTabbedPane adminTabbedPane = new AdminTabbedPane();
             } else {
 
-                Optional<UserType.patient> patientFind = BaseCodes.getPatientList().stream().filter(cod -> cod.code.equals(code)).findFirst();
+                Optional<TypeClass.patient> patientFind = BaseCodes.getPatientList().stream().filter(cod -> cod.code.equals(code)).findFirst();
                 System.out.println(patientFind);
-                Optional<UserType.Doctor> DoctortFind = BaseCodes.getDoctorList().stream().filter(cod -> cod.code.equals(code)).findFirst();
+                Optional<TypeClass.Doctor> DoctortFind = BaseCodes.getDoctorList().stream().filter(cod -> cod.code.equals(code)).findFirst();
                 System.out.println(DoctortFind);
 
                 if (patientFind.isPresent() && patientFind.get().password.equals(passwordField)) {

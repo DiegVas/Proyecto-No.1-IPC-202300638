@@ -8,10 +8,10 @@ import java.util.Objects;
 
 public class ModyDoctor {
 
-    UserType.Doctor doctorMody;
+    TypeClass.Doctor doctorMody;
     int index;
 
-    public ModyDoctor(UserType.Doctor doctorMody, int index) {
+    public ModyDoctor(TypeClass.Doctor doctorMody, int index) {
         this.doctorMody = doctorMody;
         this.index = index;
         FrameWindow window = new FrameWindow("Agregar doctor", 550, 700);
@@ -107,9 +107,9 @@ public class ModyDoctor {
                 JOptionPane.showMessageDialog(null, "Complete todas las casillas y por favor ingrese datos validos", "Crear usuario", JOptionPane.ERROR_MESSAGE);
             } else {
                 BaseData modyDoctor = new BaseData();
-                modyDoctor.ChangeDoctor(index, new UserType.Doctor(nameI, lastNameI, especialityI, phoneI, passwordI, Integer.parseInt(age.getText()), Objects.equals(genders[gender.getSelectedIndex()], "Hombre")));
+                modyDoctor.ChangeDoctor(index, new TypeClass.Doctor(nameI, lastNameI, especialityI, phoneI, passwordI, Integer.parseInt(age.getText()), Objects.equals(genders[gender.getSelectedIndex()], "Hombre")));
                 JOptionPane.showMessageDialog(null, "Doctor creado con exito\nSu codigo de usuario es " + BaseData.doctorList.getLast().code, "Crear Doctor", JOptionPane.INFORMATION_MESSAGE);
-                Object[] doctorTab = {BaseData.doctorList.getLast().code, nameI, lastNameI, age.getText(), especialityI, phoneI, genders[gender.getSelectedIndex()]};
+                Object[] doctorTab = {BaseData.doctorList.getLast().code, nameI, lastNameI, age.getText(), especialityI.toLowerCase(), phoneI, genders[gender.getSelectedIndex()]};
 
                 AdminDoctor.model.setValueAt(doctorTab[0], index, 0);
                 AdminDoctor.model.setValueAt(doctorTab[1], index, 1);
@@ -118,7 +118,7 @@ public class ModyDoctor {
                 AdminDoctor.model.setValueAt(doctorTab[4], index, 4);
                 AdminDoctor.model.setValueAt(doctorTab[5], index, 5);
                 AdminDoctor.model.setValueAt(doctorTab[6], index, 6);
-                
+
                 Actualframe.dispose();
             }
         });

@@ -105,7 +105,7 @@ public class AddDoctor {
                 BaseData newDoctor = new BaseData();
                 newDoctor.addDoctor(nameI, lastNameI, especialityI, phoneI, passwordI, Integer.parseInt(age.getText()), Objects.equals(genders[gender.getSelectedIndex()], "Hombre"));
                 JOptionPane.showMessageDialog(null, "Doctor creado con exito\nSu codigo de usuario es " + BaseData.doctorList.getLast().code, "Crear Doctor", JOptionPane.INFORMATION_MESSAGE);
-                Object[] doctorTab = {BaseData.doctorList.getLast().code, nameI, lastNameI, age.getText(), especialityI, phoneI, genders[gender.getSelectedIndex()]};
+                Object[] doctorTab = {BaseData.doctorList.getLast().code, nameI, lastNameI, age.getText(), especialityI.toLowerCase(), phoneI, genders[gender.getSelectedIndex()]};
                 AdminDoctor.model.addRow(doctorTab);
                 Actualframe.dispose();
             }

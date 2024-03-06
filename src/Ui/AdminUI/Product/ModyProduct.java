@@ -8,11 +8,11 @@ import java.util.Objects;
 
 public class ModyProduct {
 
-    UserType.patient modyPatient;
+    TypeClass.Product modyProduct;
     int index;
 
-    public ModyProduct(UserType.patient patient, int index) {
-        this.modyPatient = patient;
+    public ModyProduct(TypeClass.Product product, int index) {
+        this.modyProduct = product;
         this.index = index;
         FrameWindow window = new FrameWindow("Agregar Paciente", 550, 700);
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -27,7 +27,7 @@ public class ModyProduct {
         ModyPatientPanel.setBounds(0, 0, 500, 700);
 
         JLabel title = new JLabel();
-        title.setText("Añadir Doctor");
+        title.setText("Añadir producto");
         title.setFont(conts.boldText(30));
         title.setHorizontalAlignment(JLabel.CENTER);
         title.setForeground(conts.TextColor);
@@ -38,80 +38,51 @@ public class ModyProduct {
 
         TextfiledContructor contructor = new TextfiledContructor(200, 40);
 
-        JTextField name = new JTextField(modyPatient.name);
-        JPanel namePanel = contructor.createTextfield("Nombre Completo", name);
+        JTextField product = new JTextField(modyProduct.product);
+        JPanel namePanel = contructor.createTextfield("Producto", product);
         form.add(namePanel);
 
-        JTextField lastName = new JTextField(modyPatient.lastName);
-        JPanel lastNamePanel = contructor.createTextfield("\n", lastName);
-        form.add(lastNamePanel);
+        JTextField description = new JTextField(modyProduct.description);
+        JPanel descriptionPanel = contructor.createTextfield("Producto", description);
+        form.add(descriptionPanel);
 
-        JTextField password = new JTextField(modyPatient.password);
-        JPanel passwordPanel = contructor.createTextfield("Contraseña", password);
-        passwordPanel.setPreferredSize(new Dimension(410, 80));
-        form.add(passwordPanel);
+        JTextField price = new JTextField();
+        price.setText(String.valueOf(modyProduct.price));
+        JPanel pricePanel = contructor.createTextfield("Precio", price);
+        form.add(pricePanel);
 
-        JTextField age = new JTextField();
-        age.setText(String.valueOf(modyPatient.age));
-        JPanel agePanel = contructor.createTextfield("Edad", age);
-        form.add(agePanel);
+        JTextField count = new JTextField();
+        count.setText(String.valueOf(modyProduct.count));
+        JPanel countPanel = contructor.createTextfield("Cantidad", count);
+        form.add(countPanel);
 
-        JPanel genderPanel = new JPanel();
-        genderPanel.setPreferredSize(new Dimension(200, 70));
-        genderPanel.setLayout(new BorderLayout());
+        JButton ModyProduct = new JButton();
+        ModyProduct.setPreferredSize(new Dimension(250, 50));
+        ModyProduct.setText("Agregar producto");
+        ModyProduct.setBackground(conts.TextColor);
+        ModyProduct.setForeground(Color.white);
+        ModyProduct.setBorder(BorderFactory.createEtchedBorder());
+        ModyProduct.setFocusable(false);
 
-        JLabel genderTitle = new JLabel();
-        genderTitle.setText("Genero");
-        genderTitle.setFont(conts.plainText(20));
-        genderTitle.setPreferredSize(new Dimension(250, 30));
-        genderPanel.add(genderTitle, BorderLayout.NORTH);
-
-        String[] genders = {"Hombre", "Mujer"};
-        JComboBox gender = new JComboBox(genders);
-        gender.setSelectedItem(modyPatient.gender ? genders[0] : genders[1]);
-        gender.setSize(new Dimension(250, 30));
-        gender.setBackground(Color.white);
-        gender.setForeground(conts.TextColor);
-        gender.setFocusable(false);
-
-        genderPanel.add(gender);
-
-        form.add(genderPanel);
-
-        JButton ModyPatient = new JButton();
-        ModyPatient.setPreferredSize(new Dimension(250, 50));
-        ModyPatient.setText("Crear Doctor");
-        ModyPatient.setBackground(conts.TextColor);
-        ModyPatient.setForeground(Color.white);
-        ModyPatient.setBorder(BorderFactory.createEtchedBorder());
-        ModyPatient.setFocusable(false);
-
-        ModyPatient.addActionListener(e -> {
-            String nameI = name.getText(), lastNameI = lastName.getText(), passwordI = password.getText();
-            if (nameI.isEmpty()
-                    || lastNameI.isEmpty()
-                    || passwordI.isEmpty()
-                    || age.getText().isEmpty()
-                    || genders[gender.getSelectedIndex()] == null
-                    || !age.getText().matches("\\d+")) {
-                JOptionPane.showMessageDialog(null, "Complete todas las casillas y por favor ingrese datos validos", "Crear usuario", JOptionPane.ERROR_MESSAGE);
+        ModyProduct.addActionListener(e -> {
+            String ProductI = product.getText(), DescriptionI = description.getText(), priceI = price.getText(), countI = count.getText();
+            if (ProductI.isEmpty() || DescriptionI.isEmpty() || !priceI.matches("\\d+(\\.\\d+)?") || !count.getText().matches("\\d+")) {
+                JOptionPane.showMessageDialog(null, "Complete todas las casillas y por favor ingrese datos validos", "Modificar Producto", JOptionPane.ERROR_MESSAGE);
             } else {
-                BaseData modyPatient = new BaseData();
-                modyPatient.ChangePatient(index, new UserType.patient(nameI, lastNameI, passwordI, Integer.parseInt(age.getText()), Objects.equals(genders[gender.getSelectedIndex()], "Hombre")));
-                JOptionPane.showMessageDialog(null, "Paciente creado con exito\nSu codigo de usuario es " + BaseData.patientList.getLast().code, "Crear Paciente", JOptionPane.INFORMATION_MESSAGE);
-                Object[] PatienteTab = {BaseData.patientList.getLast().code, nameI, lastNameI, age.getText(), genders[gender.getSelectedIndex()]};
+                BaseData modyProduct = new BaseData();
+                modyProduct.changeProduct(index, new TypeClass.Product(ProductI, DescriptionI, Double.parseDouble(priceI), Integer.parseInt(countI)));
+                JOptionPane.showMessageDialog(null, "Producto modificado con exito", "Modificar Prodcuto", JOptionPane.INFORMATION_MESSAGE);
+                Object[] PatienteTab = {ProductI, DescriptionI, priceI, countI};
 
                 AdminProduct.model.setValueAt(PatienteTab[0], index, 0);
                 AdminProduct.model.setValueAt(PatienteTab[1], index, 1);
                 AdminProduct.model.setValueAt(PatienteTab[2], index, 2);
                 AdminProduct.model.setValueAt(PatienteTab[3], index, 3);
-                AdminProduct.model.setValueAt(PatienteTab[4], index, 4);
-
                 Actualframe.dispose();
             }
         });
 
-        form.add(ModyPatient);
+        form.add(ModyProduct);
         ModyPatientPanel.add(title, BorderLayout.NORTH);
         ModyPatientPanel.add(form, BorderLayout.CENTER);
 

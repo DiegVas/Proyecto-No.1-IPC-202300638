@@ -1,4 +1,4 @@
-package Ui.AdminUI;
+package Ui.PatientUI;
 
 import Ui.AdminUI.Doctor.AdminDoctor;
 import Ui.AdminUI.Patient.AdminPatient;

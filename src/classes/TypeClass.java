@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public class UserType {
+public class TypeClass {
 
     public static List<String> codeGenerates = new ArrayList<String>();
 
@@ -14,7 +14,20 @@ public class UserType {
         public static String code = "202300638";
         public String name = "admin";
         public static String password = "proyectoIPC1";
+    }
 
+    public static class Product {
+        public String product;
+        public double price;
+        public String description;
+        public int count;
+
+        public Product(String product, String description, double price, int count) {
+            this.product = product;
+            this.description = description;
+            this.price = price;
+            this.count = count;
+        }
     }
 
     public static class Doctor {

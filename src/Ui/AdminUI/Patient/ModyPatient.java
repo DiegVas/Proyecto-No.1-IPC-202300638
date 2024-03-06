@@ -8,10 +8,10 @@ import java.util.Objects;
 
 public class ModyPatient {
 
-    UserType.patient modyPatient;
+    TypeClass.patient modyPatient;
     int index;
 
-    public ModyPatient(UserType.patient patient, int index) {
+    public ModyPatient(TypeClass.patient patient, int index) {
         this.modyPatient = patient;
         this.index = index;
         FrameWindow window = new FrameWindow("Agregar Paciente", 550, 700);
@@ -97,7 +97,7 @@ public class ModyPatient {
                 JOptionPane.showMessageDialog(null, "Complete todas las casillas y por favor ingrese datos validos", "Crear usuario", JOptionPane.ERROR_MESSAGE);
             } else {
                 BaseData modyPatient = new BaseData();
-                modyPatient.ChangePatient(index, new UserType.patient(nameI, lastNameI, passwordI, Integer.parseInt(age.getText()), Objects.equals(genders[gender.getSelectedIndex()], "Hombre")));
+                modyPatient.ChangePatient(index, new TypeClass.patient(nameI, lastNameI, passwordI, Integer.parseInt(age.getText()), Objects.equals(genders[gender.getSelectedIndex()], "Hombre")));
                 JOptionPane.showMessageDialog(null, "Paciente creado con exito\nSu codigo de usuario es " + BaseData.patientList.getLast().code, "Crear Paciente", JOptionPane.INFORMATION_MESSAGE);
                 Object[] PatienteTab = {BaseData.patientList.getLast().code, nameI, lastNameI, age.getText(), genders[gender.getSelectedIndex()]};
 
