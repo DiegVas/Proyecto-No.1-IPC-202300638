@@ -1,6 +1,7 @@
 package Ui.AdminUI;
 
 import Ui.AdminUI.Doctor.AdminDoctor;
+import Ui.AdminUI.Patient.AdminPatient;
 import classes.UiConts;
 
 import javax.swing.*;
@@ -31,10 +32,8 @@ public class AdminTabbedPane {
 
         JTabbedPane managePanel = new JTabbedPane();
         managePanel.setBackground(Color.white);
-
-        JPanel doctor = new AdminDoctor().Panel();
-        doctor.setPreferredSize(new Dimension(100, 50));
-        managePanel.add("Doctores", doctor);
+        
+        managePanel.add("Doctores", new AdminDoctor().Panel());
         managePanel.add("Pacientes", new AdminPatient().Panel());
         managePanel.add("Productos", new AdminStore().Panel());
 
