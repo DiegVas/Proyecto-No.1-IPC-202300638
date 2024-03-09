@@ -81,9 +81,11 @@ public class TypeClass {
         String description, Speciality;
         LocalDate date;
         Doctor doctor;
+        int indexPatient;
         boolean aprobated;
 
-        public appointment(String description, String Speciality, LocalDate date, Doctor doctor) {
+        public appointment(String description, String Speciality, LocalDate date, Doctor doctor, int indexPatient) {
+            this.indexPatient = indexPatient;
             this.description = description;
             this.Speciality = Speciality;
             this.date = date;

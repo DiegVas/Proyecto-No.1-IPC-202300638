@@ -43,8 +43,8 @@ public class AdminTabPatient {
         managePanel.setBackground(Color.white);
 
         managePanel.add("Solicitar cita", new solictyPatient(patientUser).solictyPatientPanel());
-        managePanel.add("Verificar cita", new AdminPatient().Panel());
-        managePanel.add("Farmacia", new AdminProduct().Panel());
+        managePanel.add("Verificar cita", new verificSolictyP(patientUser).verificPanel());
+        managePanel.add("Farmacia", new farmacyShow().farmacyPanel());
 
         JLabel TabSize = new JLabel();
         TabSize.setPreferredSize(new Dimension(200, 30));

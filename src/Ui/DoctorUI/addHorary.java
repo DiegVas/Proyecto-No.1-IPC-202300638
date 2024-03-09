@@ -86,6 +86,12 @@ public class addHorary {
         deleteHorary.setForeground(Color.white);
         deleteHorary.setBorder(BorderFactory.createEtchedBorder());
         deleteHorary.setFocusable(false);
+        deleteHorary.addActionListener(e -> {
+
+            BaseData.doctorList.get(indexDoctor).doctorHorary.remove(HorarySelect.getSelectedIndex());
+            model.removeRow(HorarySelect.getSelectedIndex());
+
+        });
         asingHorary.add(deleteHorary);
 
         JPanel HoraryListP = new JPanel();

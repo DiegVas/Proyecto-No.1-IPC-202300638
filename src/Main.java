@@ -20,8 +20,8 @@ public class Main {
         data.pruebaDoctor();
         //window.add(new AdminTabbedPane().AdminPanel());
         //window.add(new LoginUI().loginWindow());
-        window.add(new AdminTabPatient(data.getPatientList().getFirst(), 0).AdminPanel());
-        //window.add(new AdminTabDoctor(data.getDoctorList().getFirst(), 0).AdminPanel());
+        //window.add(new AdminTabPatient(data.getPatientList().getFirst(), 0).AdminPanel());
+        window.add(new AdminTabDoctor(data.getDoctorList().getFirst(), 0).AdminPanel());
 
     }
 }

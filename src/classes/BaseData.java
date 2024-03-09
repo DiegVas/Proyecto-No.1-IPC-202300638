@@ -11,8 +11,19 @@ public class BaseData {
 
     public void pruebaDoctor() {
         addDoctor("Gonzales", "Panzal", "Odontologia", "123456789", "asdfqwe", 42, true);
-        doctorList.getFirst().doctorHorary.add("8:00");
+        addDoctor("Gonzales", "Panzal", "Odontologia", "123456789", "asdfqwe", 42, true);
+        addDoctor("Gonzales", "Panzal", "Odontologia", "123456789", "asdfqwe", 42, true);
+
         addPatient("maldonado", "velasquez", "12345", 18, false);
+        addPatient("maldonado", "velasquez", "12345", 18, false);
+        addPatient("maldonado", "velasquez", "12345", 18, false);
+        addPatient("maldonado", "velasquez", "12345", 18, false);
+
+        addProduct("Medicina", "1234567891011121314151617181920", 150, 20);
+        addProduct("Medicina", "Alta medicina", 150, 20);
+        addProduct("Medicina", "Alta medicina", 150, 20);
+
+
     }
 
     public void addPatient(String name, String lastName, String password, int age, boolean gender) {

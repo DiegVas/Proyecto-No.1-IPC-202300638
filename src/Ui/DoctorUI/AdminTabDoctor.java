@@ -41,16 +41,12 @@ public class AdminTabDoctor {
         JTabbedPane managePanel = new JTabbedPane();
         managePanel.setBackground(Color.white);
 
-
-        managePanel.add("Horario", new AdminPatient().Panel());
+        managePanel.add("Citas", new appointmentAdmin(indexDoctor).appointmentPanel());
         managePanel.add("Asignar Horario", new addHorary(indexDoctor).HoraryTab());
 
         JLabel TabSize = new JLabel();
         TabSize.setPreferredSize(new Dimension(200, 30));
 
-        managePanel.addChangeListener(e -> {
-
-        });
 
         AdminPane.add(managePanel, BorderLayout.CENTER);
 
