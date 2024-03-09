@@ -36,7 +36,7 @@ public class ModyPatient {
         JPanel form = new JPanel();
         form.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 20));
 
-        TextfiledContructor contructor = new TextfiledContructor(200, 40);
+        ComponentsContructor contructor = new ComponentsContructor(200, 40);
 
         JTextField name = new JTextField(modyPatient.name);
         JPanel namePanel = contructor.createTextfield("Nombre Completo", name);

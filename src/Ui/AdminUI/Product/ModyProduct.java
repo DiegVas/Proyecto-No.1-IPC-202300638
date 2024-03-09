@@ -4,7 +4,6 @@ import classes.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Objects;
 
 public class ModyProduct {
 
@@ -36,7 +35,7 @@ public class ModyProduct {
         JPanel form = new JPanel();
         form.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 20));
 
-        TextfiledContructor contructor = new TextfiledContructor(200, 40);
+        ComponentsContructor contructor = new ComponentsContructor(200, 40);
 
         JTextField product = new JTextField(modyProduct.product);
         JPanel namePanel = contructor.createTextfield("Producto", product);

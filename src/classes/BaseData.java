@@ -9,8 +9,19 @@ public class BaseData {
     public static List<TypeClass.patient> patientList = new ArrayList<TypeClass.patient>();
 
 
+    public void pruebaDoctor() {
+        addDoctor("Gonzales", "Panzal", "Odontologia", "123456789", "asdfqwe", 42, true);
+        doctorList.getFirst().doctorHorary.add("8:00");
+        addPatient("maldonado", "velasquez", "12345", 18, false);
+    }
+
     public void addPatient(String name, String lastName, String password, int age, boolean gender) {
         patientList.add(new TypeClass.patient(name, lastName, password, age, gender));
+    }
+
+    public void addAppointmentPatient(int index, TypeClass.appointment appointment) {
+        patientList.get(index).ListAppointment.add(appointment);
+        System.out.println(patientList.get(index).ListAppointment);
     }
 
     public void ChangePatient(int index, TypeClass.patient newData) {
@@ -19,6 +30,11 @@ public class BaseData {
 
     public void addDoctor(String name, String lastName, String especiality, String phone, String password, int age, boolean gender) {
         doctorList.add(new TypeClass.Doctor(name, lastName, especiality, phone, password, age, gender));
+    }
+
+    public void setAppointment(int index, TypeClass.DoctorAppointment appointment) {
+        doctorList.get(index).doctorAppoitment.add(appointment);
+        System.out.println(doctorList.get(index).doctorAppoitment);
     }
 
     public void ChangeDoctor(int index, TypeClass.Doctor newData) {

@@ -1,6 +1,7 @@
 package classes;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -30,6 +31,18 @@ public class TypeClass {
         }
     }
 
+    public static class DoctorAppointment {
+        public appointment appointment;
+        public int indexAppointmetn;
+        public patient patient;
+
+        public DoctorAppointment(appointment appointment, patient patient, int indexAppointmetn) {
+            this.indexAppointmetn = indexAppointmetn;
+            this.appointment = appointment;
+            this.patient = patient;
+        }
+    }
+
     public static class Doctor {
         public String name;
         public String lastName;
@@ -39,6 +52,9 @@ public class TypeClass {
         public String code;
         public int age;
         public boolean gender;
+
+        public List<DoctorAppointment> doctorAppoitment = new ArrayList<>();
+        public List<String> doctorHorary = new ArrayList<>();
 
         public Doctor(String name, String lastName, String specialty, String password, String phone, int age, boolean gender) {
             this.code = generateCode();
@@ -61,8 +77,23 @@ public class TypeClass {
 
     }
 
+    public static class appointment {
+        String description, Speciality;
+        LocalDate date;
+        Doctor doctor;
+        boolean aprobated;
+
+        public appointment(String description, String Speciality, LocalDate date, Doctor doctor) {
+            this.description = description;
+            this.Speciality = Speciality;
+            this.date = date;
+            this.doctor = doctor;
+        }
+    }
+
     public static class patient {
         public String name, lastName, password, code;
+        public static List<appointment> ListAppointment = new ArrayList<>();
         public int age;
         public boolean gender;
 

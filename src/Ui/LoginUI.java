@@ -3,7 +3,7 @@ package Ui;
 import Ui.AdminUI.AdminTabbedPane;
 import classes.BaseData;
 import classes.UiConts;
-import classes.TextfiledContructor;
+import classes.ComponentsContructor;
 import classes.TypeClass;
 
 import javax.swing.*;
@@ -52,7 +52,7 @@ public class LoginUI {
         Title.setFont(conts.boldText(25));
         TitlePanel.add(Title, BorderLayout.SOUTH);
 
-        TextfiledContructor FieldCreator = new TextfiledContructor(450, 40);
+        ComponentsContructor FieldCreator = new ComponentsContructor(450, 40);
 
         JTextField userData = new JTextField();
         JPanel userPanel = FieldCreator.createTextfield("Usuario", userData);

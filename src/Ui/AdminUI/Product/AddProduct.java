@@ -2,12 +2,11 @@ package Ui.AdminUI.Product;
 
 import classes.BaseData;
 import classes.FrameWindow;
-import classes.TextfiledContructor;
+import classes.ComponentsContructor;
 import classes.UiConts;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Objects;
 
 public class AddProduct {
     public AddProduct() {
@@ -33,7 +32,7 @@ public class AddProduct {
         JPanel form = new JPanel();
         form.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 20));
 
-        TextfiledContructor contructor = new TextfiledContructor(200, 40);
+        ComponentsContructor contructor = new ComponentsContructor(200, 40);
 
         JTextField product = new JTextField();
         JPanel namePanel = contructor.createTextfield("Producto", product);

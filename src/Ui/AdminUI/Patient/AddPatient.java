@@ -2,7 +2,7 @@ package Ui.AdminUI.Patient;
 
 import classes.BaseData;
 import classes.FrameWindow;
-import classes.TextfiledContructor;
+import classes.ComponentsContructor;
 import classes.UiConts;
 
 import javax.swing.*;
@@ -33,7 +33,7 @@ public class AddPatient {
         JPanel form = new JPanel();
         form.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 20));
 
-        TextfiledContructor contructor = new TextfiledContructor(200, 40);
+        ComponentsContructor contructor = new ComponentsContructor(200, 40);
 
         JTextField name = new JTextField();
         JPanel namePanel = contructor.createTextfield("Nombre Completo", name);

@@ -22,6 +22,10 @@ public class AdminDoctor {
         aDoctorPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         JLabel titleDoctor = new JLabel();
+        titleDoctor.setText("LISTADO DOCTORES");
+        titleDoctor.setFont(conts.boldText(25));
+        titleDoctor.setForeground(conts.background);
+
         JTable DoctorList = new JTable(model);
         DoctorList.setForeground(conts.TextColor);
         DoctorList.getTableHeader().setBackground(conts.background);
@@ -85,10 +89,6 @@ public class AdminDoctor {
         ButtonsPanel.add(AddDoctor);
         ButtonsPanel.add(ModyDoctor);
         ButtonsPanel.add(DeleteDoctor);
-
-        titleDoctor.setText("LISTADO DOCTORES");
-        titleDoctor.setFont(conts.boldText(25));
-        titleDoctor.setForeground(conts.background);
 
         aDoctorPanel.add(ButtonsPanel, BorderLayout.EAST);
         aDoctorPanel.add(scrollPane, BorderLayout.CENTER);
