@@ -14,10 +14,21 @@ public class addHorary {
 
 
     int indexDoctor;
+    public TypeClass.Doctor doctor;
     public DefaultTableModel model = new DefaultTableModel();
 
-    addHorary(int indexDoctor) {
+    addHorary(int indexDoctor, TypeClass.Doctor doctor) {
+        this.doctor = doctor;
         this.indexDoctor = indexDoctor;
+        BaseData data = new BaseData();
+
+        String[] headers = {"No.", "Horario de Cita"};
+        model.setColumnIdentifiers(headers);
+
+        for (int i = 0; i < this.doctor.doctorHorary.size(); i++) {
+            Object[] da = {i + 1, doctor.doctorHorary.get(i)};
+            model.addRow(da);
+        }
     }
 
     public JPanel HoraryTab() {
@@ -25,9 +36,6 @@ public class addHorary {
         JPanel HoraryPanel = new JPanel();
         HoraryPanel.setLayout(new BorderLayout());
         HoraryPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
-
-        String[] headers = {"No.", "Horario de Cita"};
-        model.setColumnIdentifiers(headers);
 
         JLabel HoraryTitle = new JLabel();
         HoraryTitle.setText("ASIGNAR HORARIO");

@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,13 @@ public class verificSolictyP {
     verificSolictyP(TypeClass.patient patient) {
         BaseData data = new BaseData();
         this.patient = patient;
+        modelPatient = new DefaultTableModel();
         appointments = patient.ListAppointment;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        for (TypeClass.appointment appointment : appointments) {
+            Object[] dataApo = {appointment.description, appointment.date.format(formatter), appointment.aprobated};
+            modelPatient.addRow(dataApo);
+        }
     }
 
     public JPanel verificPanel() {

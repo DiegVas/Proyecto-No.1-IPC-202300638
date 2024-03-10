@@ -40,7 +40,7 @@ public class AdminTabDoctor {
         managePanel.setBackground(Color.white);
 
         managePanel.add("Citas", new appointmentAdmin(indexDoctor).appointmentPanel());
-        managePanel.add("Asignar Horario", new addHorary(indexDoctor).HoraryTab());
+        managePanel.add("Asignar Horario", new addHorary(indexDoctor, UserDoctor).HoraryTab());
 
         JLabel TabSize = new JLabel();
         TabSize.setPreferredSize(new Dimension(200, 30));
