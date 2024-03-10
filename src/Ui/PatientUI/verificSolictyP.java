@@ -22,6 +22,8 @@ public class verificSolictyP {
         this.patient = patient;
         modelPatient = new DefaultTableModel();
         appointments = patient.ListAppointment;
+        String[] header = {"Descripcion", "Fecha", "Estado"};
+        modelPatient.setColumnIdentifiers(header);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         for (TypeClass.appointment appointment : appointments) {
             Object[] dataApo = {appointment.description, appointment.date.format(formatter), appointment.aprobated};
@@ -30,7 +32,6 @@ public class verificSolictyP {
     }
 
     public JPanel verificPanel() {
-        String[] header = {"Descripcion", "Fecha", "Estado"};
         UiConts conts = new UiConts();
         JPanel verificPanel = new JPanel();
         verificPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
@@ -38,7 +39,6 @@ public class verificSolictyP {
 
         JPanel tablePanel = new JPanel();
         tablePanel.setPreferredSize(new Dimension(800, 500));
-        modelPatient.setColumnIdentifiers(header);
         JTable DoctorList = new JTable(modelPatient);
         DoctorList.setForeground(conts.TextColor);
         DoctorList.getTableHeader().setBackground(conts.background);

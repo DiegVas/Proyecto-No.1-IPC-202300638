@@ -83,9 +83,10 @@ public class TypeClass {
         public Doctor doctor;
         public String horary;
         public int indexPatient;
-        public boolean aprobated;
+        public String aprobated;
 
         public appointment(String description, String Speciality, LocalDate date, String horary, Doctor doctor, int indexPatient) {
+            this.aprobated = "Sin procesar";
             this.horary = horary;
             this.indexPatient = indexPatient;
             this.description = description;

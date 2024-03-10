@@ -81,7 +81,7 @@ public class appointmentAdmin {
             confirmButton.setFocusable(false);
             confirmButton.addActionListener(e -> {
                 int appointmentindex = BaseData.patientList.get(doctorAppointment.appointment.indexPatient).ListAppointment.indexOf(doctorAppointment.appointment);
-                BaseData.patientList.get(doctorAppointment.appointment.indexPatient).ListAppointment.get(appointmentindex).aprobated = true;
+                BaseData.patientList.get(doctorAppointment.appointment.indexPatient).ListAppointment.get(appointmentindex).aprobated = "Aprobado";
                 BaseData.doctorList.get(indexDoctor).doctorAppoitment.remove(doctorAppointment);
                 System.out.println(BaseData.patientList.get(doctorAppointment.appointment.indexPatient).ListAppointment.get(appointmentindex).aprobated);
             });
@@ -96,7 +96,7 @@ public class appointmentAdmin {
             denegateButton.setFocusable(false);
             denegateButton.addActionListener(e -> {
                 int appointmentindex = BaseData.patientList.get(doctorAppointment.appointment.indexPatient).ListAppointment.indexOf(doctorAppointment.appointment);
-                BaseData.patientList.get(doctorAppointment.appointment.indexPatient).ListAppointment.get(appointmentindex).aprobated = false;
+                BaseData.patientList.get(doctorAppointment.appointment.indexPatient).ListAppointment.get(appointmentindex).aprobated = "No aprobado";
                 BaseData.doctorList.get(indexDoctor).doctorAppoitment.remove(doctorAppointment);
                 System.out.println(BaseData.patientList.get(doctorAppointment.appointment.indexPatient).ListAppointment.get(appointmentindex).aprobated);
             });

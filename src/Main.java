@@ -16,7 +16,7 @@ public class Main {
         window.setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Images/logo.png")));
         TypeClass.codeGenerates.add("202300638");
 
-        // BaseData data = new BaseData();
+        //BaseData data = new BaseData();
         //data.pruebaDoctor();
         // window.add(new AdminTabbedPane().AdminPanel());
         window.add(new LoginUI().loginWindow());
