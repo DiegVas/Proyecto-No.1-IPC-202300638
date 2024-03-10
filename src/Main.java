@@ -16,12 +16,13 @@ public class Main {
         window.setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Images/logo.png")));
         TypeClass.codeGenerates.add("202300638");
 
-        BaseData data = new BaseData();
-        data.pruebaDoctor();
-        //window.add(new AdminTabbedPane().AdminPanel());
-        //window.add(new LoginUI().loginWindow());
+        // BaseData data = new BaseData();
+        //data.pruebaDoctor();
+        // window.add(new AdminTabbedPane().AdminPanel());
+        window.add(new LoginUI().loginWindow());
         //window.add(new AdminTabPatient(data.getPatientList().getFirst(), 0).AdminPanel());
-        window.add(new AdminTabDoctor(data.getDoctorList().getFirst(), 0).AdminPanel());
+        //window.add(new AdminTabDoctor(data.getDoctorList().getFirst(), 0).AdminPanel());
+
 
     }
 }

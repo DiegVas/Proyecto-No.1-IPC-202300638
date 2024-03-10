@@ -1,5 +1,6 @@
 package classes;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class BaseData {
         addDoctor("Gonzales", "Panzal", "Odontologia", "123456789", "asdfqwe", 42, true);
 
         addPatient("maldonado", "velasquez", "12345", 18, false);
+        BaseData.patientList.getFirst().ListAppointment.add(new TypeClass.appointment("asdasd", "ASS", LocalDate.now(), "800", BaseData.doctorList.getFirst(), 0));
         addPatient("maldonado", "velasquez", "12345", 18, false);
         addPatient("maldonado", "velasquez", "12345", 18, false);
         addPatient("maldonado", "velasquez", "12345", 18, false);
@@ -22,6 +24,9 @@ public class BaseData {
         addProduct("Medicina", "1234567891011121314151617181920", 150, 20);
         addProduct("Medicina", "Alta medicina", 150, 20);
         addProduct("Medicina", "Alta medicina", 150, 20);
+
+        BaseData.doctorList.getFirst().doctorAppoitment.add(0, new TypeClass.DoctorAppointment(new TypeClass.appointment("aaa", "aaa", LocalDate.now(), "8:00", BaseData.doctorList.getFirst(), 0), BaseData.patientList.getFirst(), 0));
+        BaseData.doctorList.getFirst().doctorAppoitment.add(0, new TypeClass.DoctorAppointment(new TypeClass.appointment("aaa", "aaa", LocalDate.now(), "9:00", BaseData.doctorList.getFirst(), 0), BaseData.patientList.getFirst(), 0));
 
 
     }

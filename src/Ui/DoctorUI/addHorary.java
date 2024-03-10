@@ -14,7 +14,7 @@ public class addHorary {
 
 
     int indexDoctor;
-    public static DefaultTableModel model = new DefaultTableModel();
+    public DefaultTableModel model = new DefaultTableModel();
 
     addHorary(int indexDoctor) {
         this.indexDoctor = indexDoctor;

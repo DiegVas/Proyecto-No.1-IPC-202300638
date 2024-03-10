@@ -1,6 +1,8 @@
 package Ui;
 
 import Ui.AdminUI.AdminTabbedPane;
+import Ui.DoctorUI.AdminTabDoctor;
+import Ui.PatientUI.AdminTabPatient;
 import classes.BaseData;
 import classes.UiConts;
 import classes.ComponentsContructor;
@@ -87,14 +89,14 @@ public class LoginUI {
             } else {
 
                 Optional<TypeClass.patient> patientFind = BaseCodes.getPatientList().stream().filter(cod -> cod.code.equals(code)).findFirst();
-                System.out.println(patientFind);
                 Optional<TypeClass.Doctor> DoctortFind = BaseCodes.getDoctorList().stream().filter(cod -> cod.code.equals(code)).findFirst();
-                System.out.println(DoctortFind);
 
                 if (patientFind.isPresent() && patientFind.get().password.equals(passwordField)) {
                     System.out.println("Paciente");
+                    AdminTabPatient patient = new AdminTabPatient(patientFind.get(), BaseCodes.getPatientList().indexOf(patientFind.get()));
                 } else if (DoctortFind.isPresent() && DoctortFind.get().password.equals(passwordField)) {
                     System.out.println("Doctor");
+                    AdminTabDoctor adminTabDoctor = new AdminTabDoctor(DoctortFind.get(), BaseCodes.getDoctorList().indexOf(DoctortFind.get()));
                 } else {
                     JOptionPane.showMessageDialog(null, "NO se encontro ningun usuario", "Iniciar sesion", JOptionPane.ERROR_MESSAGE);
                 }

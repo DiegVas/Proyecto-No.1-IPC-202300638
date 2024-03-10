@@ -1,6 +1,8 @@
 package Ui.AdminUI.Patient;
 
 import classes.BaseData;
+import classes.FrameWindow;
+import classes.TypeClass;
 import classes.UiConts;
 
 import javax.swing.*;
@@ -10,7 +12,7 @@ import java.awt.*;
 public class AdminPatient {
 
     public static DefaultTableModel model = new DefaultTableModel();
-
+    
     public JPanel Panel() {
 
         String[] headers = {"Codigo", "Nombre", "Apellido", "Edad", "Genero"};

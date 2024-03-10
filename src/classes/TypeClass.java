@@ -78,13 +78,15 @@ public class TypeClass {
     }
 
     public static class appointment {
-        String description, Speciality;
-        LocalDate date;
-        Doctor doctor;
-        int indexPatient;
-        boolean aprobated;
+        public String description, Speciality;
+        public LocalDate date;
+        public Doctor doctor;
+        public String horary;
+        public int indexPatient;
+        public boolean aprobated;
 
-        public appointment(String description, String Speciality, LocalDate date, Doctor doctor, int indexPatient) {
+        public appointment(String description, String Speciality, LocalDate date, String horary, Doctor doctor, int indexPatient) {
+            this.horary = horary;
             this.indexPatient = indexPatient;
             this.description = description;
             this.Speciality = Speciality;

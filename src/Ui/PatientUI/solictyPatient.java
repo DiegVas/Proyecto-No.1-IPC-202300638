@@ -99,7 +99,7 @@ public class solictyPatient {
 
         JButton addAppointment = new JButton();
         addAppointment.setPreferredSize(new Dimension(250, 50));
-        addAppointment.setText("Añadir horario");
+        addAppointment.setText("Solicitar Cita");
         addAppointment.setBackground(conts.TextColor);
         addAppointment.setForeground(Color.white);
         addAppointment.setBorder(BorderFactory.createEtchedBorder());
@@ -108,7 +108,7 @@ public class solictyPatient {
             BaseData data = new BaseData();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate date = LocalDate.parse(Dates.get(DateList.getSelectedIndex()), formatter);
-            TypeClass.appointment appointment = new TypeClass.appointment(descriptionAppoint.getText(), specialitys.get(specialytList.getSelectedIndex()), date, data.getDoctorList().get(indexDoctors.get(doctorsList.getSelectedIndex())), data.getPatientList().indexOf(patient));
+            TypeClass.appointment appointment = new TypeClass.appointment(descriptionAppoint.getText(), specialitys.get(specialytList.getSelectedIndex()), date, horarysDoctor.get(HoraryList.getSelectedIndex()), data.getDoctorList().get(indexDoctors.get(doctorsList.getSelectedIndex())), data.getPatientList().indexOf(patient));
             data.setAppointment(indexDoctors.get(doctorsList.getSelectedIndex()), new TypeClass.DoctorAppointment(appointment, patient, 0));
             data.addAppointmentPatient(data.getPatientList().indexOf(patient), appointment);
 

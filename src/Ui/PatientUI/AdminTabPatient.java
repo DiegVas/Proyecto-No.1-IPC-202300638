@@ -1,8 +1,5 @@
 package Ui.PatientUI;
 
-import Ui.AdminUI.Doctor.AdminDoctor;
-import Ui.AdminUI.Patient.AdminPatient;
-import Ui.AdminUI.Product.AdminProduct;
 import classes.FrameWindow;
 import classes.TypeClass;
 import classes.UiConts;
@@ -18,9 +15,9 @@ public class AdminTabPatient {
     public AdminTabPatient(TypeClass.patient patient, int indexPatient) {
         this.patientUser = patient;
         this.indexPatient = indexPatient;
-      /*  FrameWindow window = new FrameWindow("Paciente", 1000, 600);
+        FrameWindow window = new FrameWindow("Paciente", 1000, 600);
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        window.add(AdminPanel());*/
+        window.add(AdminPanel());
     }
 
     public JPanel AdminPanel() {
